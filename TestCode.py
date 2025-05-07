@@ -3,6 +3,7 @@ class Game:
   def __init__(self):
     self.player - Player()
     self.house = House()
+    
   def start(self):
     print("You arrive in an old strange neighborhood. It all looks so uniform and strange, except one house just feels... different. You decide to go up to it to take a closer look.")
     choice = input("Do you want to enter the house? (yes/no): ").lower()
@@ -12,13 +13,15 @@ class Game:
       print("You walk away and miss the opportunity... maybe next time.")
 
 class Player:
-  def __init__(self):
-    self.name = input("Hello, adventurer! What is your name? ")
+  def __init__(self, name):
+    self.name = name
     self.currency = 100  #the player starts with 100 dabloons
     self.inventory = []
+    
   def add_coins(self, amount):
     self.coins += amount
     print(f'You now have {self.currency} dabloons.')
+    
   def spend_coins(self, amount):
     if self.coins >= amount:
       self.coins -= amount
@@ -31,10 +34,11 @@ class Player:
 class SlotMachine:
   def __init__(self):
     self.name = 'Slot Machine Room'
-  def play(self,player):
+    
+  def play(self,player):    
     print('Welcome to the Slot Machine!')
     if not player.spend_currency(10):
-      return
+        return
     symbols = ['Cherry', 'Lemon', 'Bell']
     result = [random.choice(symbols) for _ in range(3)]
     print(" | ".join(result))
@@ -47,6 +51,7 @@ class SlotMachine:
 class DiceGame:
   def __init__(self):
     self.name = "Dice Game Room"
+    
   def play(self,player):
     print("Welcome to the Dice Game Room.")
     if not player.spend_coins(5):
