@@ -17,3 +17,4 @@ if __name__ == '__main__':
 #Need to improve:
   #more options for the games and rooms
   #Save name and dabloons to file??
+  #add secret rooms by counting up wins and if you get so many wins you get keys to secret rooms.

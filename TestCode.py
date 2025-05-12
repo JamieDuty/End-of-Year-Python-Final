@@ -1,5 +1,4 @@
 import random
-#need to add a way to count up wins so I can add secret keys and things
 class Game:
     def __init__(self, player):
         self.player = player
