@@ -14,6 +14,20 @@ class Game:
         else:
             print("You walk away and miss the opportunity... maybe next time.")
 
+class Room:
+    def __init__(self, name):
+        self.name = name
+        self.exits = {}
+        
+    def connect(self, direction, room):
+        self.exits[direction] = room
+    
+    def get_exit(self, direction):
+        return self.exits.get(direction)
+    
+    def play(self, player):
+        pass
+
 class Player:
     def __init__(self, name):
         self.name = name
@@ -33,19 +47,19 @@ class Player:
             print("You are out of dabloons!")
             return False
 
-class SlotMachine:
+class SlotMachine(Room):
     def __init__(self):
-        self.name = 'Slot Machine Room'
-
-    def play(self,player):    
-        print('Welcome to the Slot Machine!')
+        super().__init__('Slot Machine Room')
+    
+    def play(self, player):
+        print('Welcome to the Slot Machine Room') #Add more detail
         if not player.spend_coins(10):
             return
         symbols = ['Cherry', 'Lemon', 'Bell']
-        result = [random.choice(symbols) for _ in range(3)]
-        print(" | ".join(result))
+        result = [random.choice(symbols) for i in range(3)]
+        print(' | '.join(result))
         if len(set(result)) == 1:
-            print("Jackpot! You win 50 dabloons!")
+            print("Jackpot! You win 50 Dabloons!")
             player.add_coins(50)
         else:
             print("Better luck next time.")
@@ -58,13 +72,16 @@ class DiceGame:
         print("Welcome to the Dice Game Room.")
         if not player.spend_coins(5):
           return
+        
         player_roll = random.randint(1, 6)
         house_roll = random.randint(1, 6)
         print(f'You rolled: {player_roll}')
         print(f'House rolled: {house_roll}')
+        
         if player_roll > house_roll:
           print('You win 10 coins!')
           player.add_coins(10)
+          
         else:
           print("You lose!")
 
@@ -77,18 +94,24 @@ class House:
     def enter(self,player):
         print("You enter the house. It's dark and mysterious.")
         print("There are paths leading in different directions...")
+        
         while True:
           print('\nAvailable directions:')
+          
           for direction in self.rooms:
             print(f'- {direction.title()}')
           print('- Leave (to exit the mansion and end your night)')
           choice = input("Which direction do you want to go? ").lower()
+          
           if choice in self.rooms:
             room = self.rooms[choice]
             print(f'You walk {choice} and enter the {room.name}!')
             room.play(player)
+            
           elif choice == 'leave':
             print("You leave the house and step back into reality. The night is over.")
             break
+        
           else:
             print('You can\'t go that way.')
+
