@@ -87,31 +87,42 @@ class DiceGame:
 
 class House:
     def __init__(self):
-        self.rooms = {
-          "north": SlotMachine(),
-          "east": DiceGame()
-    }
-    def enter(self,player):
-        print("You enter the house. It's dark and mysterious.")
-        print("There are paths leading in different directions...")
-        
-        while True:
-          print('\nAvailable directions:')
-          
-          for direction in self.rooms:
-            print(f'- {direction.title()}')
-          print('- Leave (to exit the mansion and end your night)')
-          choice = input("Which direction do you want to go? ").lower()
-          
-          if choice in self.rooms:
-            room = self.rooms[choice]
-            print(f'You walk {choice} and enter the {room.name}!')
-            room.play(player)
-            
-          elif choice == 'leave':
-            print("You leave the house and step back into reality. The night is over.")
-            break
-        
-          else:
-            print('You can\'t go that way.')
+        # Create rooms
+        self.slot_room = SlotMachine()
+        self.dice_room = DiceGame()
+        self.entrance = Room("Entrance")
 
+        # Connect rooms
+        self.entrance.connect("north", self.slot_room)
+        self.entrance.connect("east", self.dice_room)
+        self.slot_room.connect("south", self.entrance)
+        self.dice_room.connect("west", self.entrance)
+
+        self.current_room = self.entrance
+
+    def enter(self, player):
+        print("You enter the house. It's dark and mysterious.")
+        self.move(player)
+
+    def move(self, player):
+        while True:
+            print(f"\nYou are in the {self.current_room.name}.")
+            if isinstance(self.current_room, Room) and hasattr(self.current_room, 'play') and self.current_room.name != "Entrance":
+                while True:
+                    self.current_room.play(player)
+                    again = input("Play again? (yes/no): ").lower()
+                    if again != "yes":
+                        break
+            print("Available directions:")
+            for direction in self.current_room.exits:
+                print(f"- {direction.title()}")
+            print("- leave (to exit the house)")
+
+            choice = input("What direction do you want to go? ").lower()
+            if choice == "leave":
+                print("You leave the house and step back into reality. The night is over.")
+                break
+            elif choice in self.current_room.exits:
+                self.current_room = self.current_room.get_exit(choice)
+            else:
+                print("You can't go that way.")
