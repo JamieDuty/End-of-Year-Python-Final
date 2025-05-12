@@ -16,5 +16,4 @@ if __name__ == '__main__':
   
 #Need to improve:
   #more options for the games and rooms
-  #dont immediately go back to the "Entry Room"
   #Save name and dabloons to file??

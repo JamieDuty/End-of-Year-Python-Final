@@ -36,12 +36,10 @@ class Player:
 
     def add_coins(self, amount):
         self.coins += amount
-        print(f'You now have {self.coins} dabloons.')
 
     def spend_coins(self, amount):
         if self.coins >= amount:
             self.coins -= amount
-            print(f'You now have {self.coins} dabloons.')
             return True
         else:
             print("You are out of dabloons!")
@@ -52,7 +50,8 @@ class SlotMachine(Room):
         super().__init__('Slot Machine Room')
     
     def play(self, player):
-        print('Welcome to the Slot Machine Room') #Add more detail
+        #Welcome message used to get here
+        #Add detail here
         if not player.spend_coins(10):
             return
         symbols = ['Cherry', 'Lemon', 'Bell']
@@ -63,28 +62,27 @@ class SlotMachine(Room):
             player.add_coins(50)
         else:
             print("Better luck next time.")
+        print(f"You now have {player.coins} dabloons.")
 
-class DiceGame:
+class DiceGame(Room):
     def __init__(self):
-        self.name = "Dice Game Room"
+        super().__init__('Dice Game Room')
 
-    def play(self,player):
-        print("Welcome to the Dice Game Room.")
+    def play(self, player):
+        #Add detail here
         if not player.spend_coins(5):
-          return
-        
+            return
         player_roll = random.randint(1, 6)
         house_roll = random.randint(1, 6)
-        print(f'You rolled: {player_roll}')
+        print(f'\nYou rolled: {player_roll}')
         print(f'House rolled: {house_roll}')
-        
         if player_roll > house_roll:
-          print('You win 10 coins!')
-          player.add_coins(10)
-          
+            print('\nYou win 10 dabloons!')
+            player.add_coins(10)
         else:
-          print("You lose!")
-
+            print("\nYou lose!")
+        print(f"You now have {player.coins} dabloons.")
+            
 class House:
     def __init__(self):
         # Create rooms
