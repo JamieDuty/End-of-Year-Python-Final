@@ -52,16 +52,20 @@ class SlotMachine(Room):
     def play(self, player):
         #Welcome message used to get here
         #Add detail here
+        print("With shaky hands, you pull the lever, and the slots begins spinning....")
+        print("every passing spin, the nerves rise.")
+        print("At last, the results.....")
+        
         if not player.spend_coins(10):
             return
         symbols = ['Cherry', 'Lemon', 'Bell']
         result = [random.choice(symbols) for i in range(3)]
         print(' | '.join(result))
         if len(set(result)) == 1:
-            print("Jackpot! You win 50 Dabloons!")
+            print("\nJackpot! You win 50 Dabloons!")
             player.add_coins(50)
         else:
-            print("Better luck next time.")
+            print("\nBetter luck next time.")
         print(f"You now have {player.coins} dabloons.")
 
 class DiceGame(Room):
