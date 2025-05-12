@@ -113,12 +113,14 @@ class House:
                 while True:
                     self.current_room.play(player)
                     again = input("Play again? (yes/no): ").lower()
+                    while again.lower() != 'yes' and again.lower() != 'no':
+                        again = input("Play again? (yes/no): ").lower()    
                     if again != "yes":
                         break
             print("Available directions:")
             for direction in self.current_room.exits:
                 print(f"- {direction.title()}")
-            print("- leave (to exit the house)")
+            print("- Leave (to exit the house)")
 
             choice = input("What direction do you want to go? ").lower()
             if choice == "leave":
