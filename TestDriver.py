@@ -11,5 +11,10 @@ def main():
       game.start()
 if __name__ == '__main__':
   main()
+
+#Currently the game starts and runs, and there are 2 options and the leave option. Both Games work
   
-#Where I am at currently it needs to start the game, where you come up on the neighborhood
+#Need to improve:
+  #more options for the games and rooms
+  #dont immediately go back to the "Entry Room"
+  #Save name and dabloons to file??
