@@ -40,3 +40,20 @@ class House:
             else:
                 print("You can't go that way.")
 
+class DiceGame(Room):
+    def __init__(self):
+        super().__init__('Dice Game Room')
+
+    def play(self, player):
+        print("Welcome to the Dice Game Room.")
+        if not player.spend_currency(5):
+            return
+        player_roll = random.randint(1, 6)
+        house_roll = random.randint(1, 6)
+        print(f'You rolled: {player_roll}')
+        print(f'House rolled: {house_roll}')
+        if player_roll > house_roll:
+            print('You win 10 dabloons!')
+            player.add_currency(10)
+        else:
+            print("You lose!")
