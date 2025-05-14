@@ -1,6 +1,7 @@
 import random
 #lot of youtube and google was needed to fully understand this
 #so basically i say i understand it but not 100%
+#this game is basically rng based
 
 #Base Room class has directions to other rooms
 class Room:

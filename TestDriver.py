@@ -19,3 +19,7 @@ if __name__ == '__main__':
     main()
 
 
+#Run the program to start it
+#this game is mostly luck based
+#lowkey haven't tested it so hoping everything works
+#the goal is to unlock the secret rooms 
