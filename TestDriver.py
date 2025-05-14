@@ -18,7 +18,7 @@ def main():
 if __name__ == '__main__':
     main()
 
-
+#Name of the game is Secret Casino i guess
 #Run the program to start it
 #this game is mostly luck based
 #lowkey haven't tested it so hoping everything works
