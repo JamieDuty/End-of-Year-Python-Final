@@ -23,3 +23,5 @@ if __name__ == '__main__':
 #this game is mostly luck based
 #lowkey haven't tested it so hoping everything works
 #the goal is to unlock the secret rooms 
+#overall this program worked well but for some reason you could get stuck in the secret rooms
+#probably could've added more user control but it worked well and got a fair grade.
