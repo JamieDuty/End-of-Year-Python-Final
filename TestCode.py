@@ -224,6 +224,8 @@ class House:
             "northeast": QuizGame(),
             "northwest": CoinFlip(),
             "southeast": RiddleRoom(),
+            #pretty sure my code doesn't recognize these rooms 
+            #as connected to the rest of the house
             "secret_slot": SecretRoom("slot"),
             "secret_dice": SecretRoom("dice"),
             "secret_card": SecretRoom("card"),
